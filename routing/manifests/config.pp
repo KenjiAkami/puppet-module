@@ -5,23 +5,14 @@ class routing::config {
 			group => 'root',
 			mode => 0600,
 	}
-	if $is_virtual == 'true' {
-		file { "routing":
-			path => "/etc/sysconfig/network-scripts/route-eth1",
-			source => $network_eth1 ? {
-				'10.24.90.0' => "puppet:///routing/route-eth1.90",
-				'10.24.94.0' => "puppet:///routing/route-eth1.94",
+    file { "routing":
+        path => "/etc/sysconfig/static-routes",
+            source => $network_bond1 ? {
+				'172.16.0.0' => "puppet:///modules/routing/static-routes.172.16",
+				'172.24.0.0' => "puppet:///modules/routing/static-routes.172.24",
+				'172.25.0.0' => "puppet:///modules/routing/static-routes.172.25",
 				default		 => undef,
-			},
-		}
-	} else {
-		file { "routing":
-			path => "/etc/sysconfig/network-scripts/route-bond1",
-			source => $network_bond1 ? {
-				'10.24.90.0' => "puppet:///routing/route-bond1.90",
-				'10.24.94.0' => "puppet:///routing/route-bond1.94",
-				default		 => undef,
-			},
-		}
+		    },
+#        notify => Class["routing::service"];
 	}
 }

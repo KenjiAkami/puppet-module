@@ -1,0 +1,6 @@
+<% if dnslist.any? -%>
+<% dnslist.each do |ip| -%>
+nameserver <%= ip %>
+<% end -%>
+<% end -%>
+domain crooz.local

@@ -3,7 +3,7 @@ class cobbler::config {
 		ensure		=> directory,
 		recurse		=> true,
 		path		=> "/etc/cobbler",
-		source		=> "puppet:///cobbler/cobbler",
+		source		=> "puppet:///modules/cobbler/cobbler",
 		owner		=> "root",
 		group		=> "root",
 		require 	=> Class["cobbler::install"],

@@ -1,0 +1,9 @@
+#distribution date : 2012/07/12
+#distributor : ito
+#distribution range : social
+
+#eguardian
+Allow from 58.157.190.246
+Allow from 58.157.190.247
+Allow from 58.157.190.248
+Allow from 202.238.90.146

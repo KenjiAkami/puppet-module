@@ -1,0 +1,35 @@
+server {
+    listen       <%= port%>;
+    server_name  <%= name %>;
+
+    access_log  /var/log/nginx/<%= name %>-access_log  main buffer=64k;
+
+    proxy_next_upstream error;
+
+    location / {
+        proxy_pass        http://<%= upname %>;
+        proxy_pass_header Server;
+        proxy_set_header  Host $host;
+        proxy_set_header  X-Real-IP $remote_addr;
+        proxy_set_header  X-Forwarded-For $proxy_add_x_forwarded_for;
+        proxy_intercept_errors on;
+    }
+
+    error_page 500 502  /_proxyerror/common_50x.html;
+    location /_proxyerror/ {
+        root   /usr/share/nginx/html;
+    }
+
+    location /_proxycheck/ {
+        root   /usr/share/nginx/html;
+    }
+
+    location /nginx_status {
+        stub_status on;
+        access_log off;
+        allow 172.16.0.0/12;
+        allow 127.0.0.0/8;
+        deny all;
+    }
+}
+

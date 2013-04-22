@@ -1,0 +1,45 @@
+#!/bin/bash
+export PATH=/bin:/usr/bin:/infra/bin
+
+LOG=/var/log/venus/venus_error_log
+ROTATED_LOG=/var/log/venus/venus_error_log.1
+OFFSET_FILE=/tmp/zabbix_venus_error.offset
+TMP=$(mktemp)
+logtail=/etc/zabbix/helper/logtail.pl
+
+function zsend {
+  zabbix_sender -c /etc/zabbix/zabbix_agentd.conf -k $1 -o $2 > /dev/null
+}
+
+# 前回実行から6分以上たってたら空回しして終了。効率悪いけどとりあえず
+if [ ! -e $OFFSET_FILE ];then
+  $logtail $LOG -r $ROTATED_LOG -o $OFFSET_FILE > $TMP
+  echo 1
+  exit
+else
+  LAST=`date -r $OFFSET_FILE +%s`
+  NOW=`date +%s`
+  INTERVAL=$((NOW - LAST))
+  if [ $INTERVAL > 360 ];then
+    $logtail $LOG -r $ROTATED_LOG -o $OFFSET_FILE > $TMP
+    echo 2
+    exit
+  fi
+fi
+
+$logtail $LOG -r $ROTATED_LOG -o $OFFSET_FILE > $TMP
+ret=$?
+if [ "$ret" -ne 0 ];then
+  echo $ret
+  exit $ret
+fi
+
+
+zsend venus.count.otz `grep OTZ $TMP | wc -l`
+zsend venus.count.owt `grep OWT $TMP | wc -l`
+zsend venus.count.abn `grep ABN $TMP | wc -l`
+zsend venus.count.php_fatal `grep "PHP Fatal" $TMP | wc -l`
+
+/bin/rm $TMP
+echo 0
+exit 0

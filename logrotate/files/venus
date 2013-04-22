@@ -1,0 +1,6 @@
+/var/log/venus/*_log {
+    daily
+    rotate 14
+    missingok
+    create 0666 apache apache
+}

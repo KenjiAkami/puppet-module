@@ -1,0 +1,54 @@
+#!/usr/bin/perl
+use strict;
+use warnings;
+use POSIX;
+
+my $site = shift;
+
+my $logtail = "/etc/zabbix/helper/logtail.pl";
+my $offset  = "/tmp/zabbix_access_log.offset.$site";
+
+my $slow_time = 1_000_000;
+my $zabbix_sender = "zabbix_sender -c /etc/zabbix/zabbix_agentd.conf >/dev/null";
+
+my $today       = strftime "%Y%m%d", localtime;
+my $yesterday   = strftime "%Y%m%d", localtime(time - 60*60*24);
+my $log         = "/var/log/httpd/$site-access_log.$today";
+my $rotated_log = "/var/log/httpd/$site-access_log.$yesterday";
+
+my $count_all  = 0;
+my $count_slow = 0;
+my $rate_slow  = 0;
+my $time_sum   = 0;
+my $time_avg   = 0;
+
+if( ! -e $offset || time - (stat $offset)[9] > 360){
+  system("$logtail $log -r $rotated_log -o $offset >/dev/null");
+  print 0;
+  exit;
+}
+
+my $cmd = "$logtail $log -r $rotated_log -o $offset";
+my $fh;
+unless(open $fh, "$cmd |"){
+  print 1;
+  exit;
+}
+
+while(<$fh>){
+  my ($access_time) = /(\d+)$/;
+
+  $count_all++;
+  $count_slow++ if $access_time > $slow_time;
+  $time_sum += $access_time;
+}
+close $fh;
+
+if($count_all != 0){
+  $time_avg  = int(($time_sum / $count_all) / 1000);
+  $rate_slow = $count_slow / $count_all;
+}
+
+system("$zabbix_sender -k http.slow[$site] -o $rate_slow");
+system("$zabbix_sender -k http.res_time.avg[$site] -o $time_avg ");
+print $count_all;

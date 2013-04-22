@@ -1,0 +1,274 @@
+#distribution date : 2012/03/08
+#distributor : ito
+#distribution range : all
+
+# docomo
+#SetEnvIf:DOCOMO
+allow from 124.146.174.0/24
+allow from 124.146.175.0/24
+allow from 202.229.176.0/24
+allow from 202.229.177.0/24
+allow from 202.229.178.0/24
+allow from 203.138.180.0/24
+allow from 203.138.181.0/24
+allow from 203.138.203.0/24
+allow from 210.136.161.0/24
+allow from 210.153.84.0/24
+allow from 210.153.86.0/24
+allow from 210.153.87.0/24
+allow from 210.173.180.18
+allow from 218.213.143.134
+#spmode 20120308
+allow from 1.75.224.0/24
+allow from 1.75.225.0/24
+allow from 1.75.226.0/24
+allow from 1.75.227.0/24
+allow from 1.75.228.0/24
+allow from 1.75.229.0/24
+allow from 1.75.230.0/24
+allow from 1.75.231.0/24
+allow from 1.75.232.0/24
+allow from 1.75.233.0/24
+allow from 1.75.234.0/24
+allow from 1.75.235.0/24
+allow from 1.75.236.0/24
+allow from 1.75.237.0/24
+allow from 1.75.238.0/24
+allow from 1.75.239.0/24
+allow from 1.75.240.0/24
+allow from 1.75.241.0/24
+allow from 1.75.242.0/24
+allow from 1.75.243.0/24
+allow from 183.74.192.0/24
+allow from 183.74.193.0/24
+allow from 183.74.194.0/24
+allow from 183.74.195.0/24
+allow from 183.74.196.0/24
+allow from 183.74.197.0/24
+allow from 183.74.198.0/24
+allow from 183.74.199.0/24
+allow from 183.74.200.0/24
+allow from 183.74.201.0/24
+#/SetEnvIf
+
+#docomo phonepay
+Allow from 122.208.81.210
+Allow from 122.208.81.211
+Allow from 122.208.45.210
+Allow from 122.208.45.211
+Allow from 1.33.136.0/24
+
+#creditsystem paygent
+Allow from 202.213.246.39
+
+
+#ezweb
+#SetEnvIf:AU
+allow from 111.86.141.0/24
+allow from 111.86.142.0/24
+allow from 111.86.143.0/24
+allow from 111.86.147.0/24
+allow from 118.152.214.0/24
+allow from 118.159.131.0/25
+Allow from 118.159.132.160/27
+allow from 118.159.133.0/26
+allow from 118.159.133.192/26
+allow from 121.111.227.0/25
+Allow from 121.111.227.160/27
+Allow from 121.111.227.32/26
+allow from 121.111.231.0/25
+allow from 121.111.231.160/27
+allow from 210.169.40.0/24
+allow from 210.196.3.192/26
+allow from 210.196.5.192/26
+allow from 210.230.128.0/24
+allow from 210.230.141.192/26
+allow from 210.234.105.32/29
+allow from 210.234.108.64/26
+allow from 210.251.1.192/26
+allow from 210.251.2.0/27
+allow from 211.5.1.0/24
+allow from 211.5.2.128/25
+allow from 211.5.7.0/24
+allow from 218.222.1.0/24
+allow from 219.108.157.0/25
+allow from 219.108.158.0/26
+allow from 219.125.145.0/25
+allow from 219.125.146.0/27
+allow from 219.125.148.0/24
+allow from 219.125.151.128/25
+allow from 222.5.62.128/25
+allow from 222.5.63.0/24
+allow from 222.7.56.0/24
+allow from 222.7.57.0/24
+allow from 59.135.38.128/25
+allow from 61.117.0.0/24
+allow from 61.117.1.0/24
+allow from 61.117.2.0/26
+allow from 61.202.3.0/24
+allow from 111.107.116.0/24
+
+#brew
+allow from 119.107.0.0/24
+allow from 119.107.1.0/24
+allow from 119.107.10.0/24
+allow from 119.107.11.0/24
+allow from 119.107.12.0/24
+allow from 119.107.13.0/24
+allow from 119.107.14.0/24
+allow from 119.107.15.0/24
+allow from 119.107.16.0/24
+allow from 119.107.17.0/24
+allow from 119.107.18.0/24
+allow from 119.107.19.0/24
+allow from 119.107.2.0/24
+allow from 119.107.20.0/24
+allow from 119.107.21.0/24
+allow from 119.107.22.0/24
+allow from 119.107.23.0/24
+allow from 119.107.24.0/24
+allow from 119.107.25.0/24
+allow from 119.107.26.0/24
+allow from 119.107.27.0/24
+allow from 119.107.28.0/24
+allow from 119.107.29.0/24
+allow from 119.107.3.0/24
+allow from 119.107.30.0/24
+allow from 119.107.31.0/24
+allow from 119.107.32.0/24
+allow from 119.107.33.0/24
+allow from 119.107.34.0/24
+allow from 119.107.35.0/24
+allow from 119.107.36.0/24
+allow from 119.107.37.0/24
+allow from 119.107.38.0/24
+allow from 119.107.39.0/24
+allow from 119.107.4.0/24
+allow from 119.107.40.0/24
+allow from 119.107.41.0/24
+allow from 119.107.42.0/24
+allow from 119.107.43.0/24
+allow from 119.107.44.0/24
+allow from 119.107.45.0/24
+allow from 119.107.46.0/24
+allow from 119.107.47.0/24
+allow from 119.107.48.0/24
+allow from 119.107.49.0/24
+allow from 119.107.5.0/24
+allow from 119.107.50.0/24
+allow from 119.107.51.0/24
+allow from 119.107.52.0/24
+allow from 119.107.53.0/24
+allow from 119.107.54.0/24
+allow from 119.107.55.0/24
+allow from 119.107.56.0/24
+allow from 119.107.57.0/24
+allow from 119.107.58.0/24
+allow from 119.107.59.0/24
+allow from 119.107.6.0/24
+allow from 119.107.60.0/24
+allow from 119.107.61.0/24
+allow from 119.107.62.0/24
+allow from 119.107.63.0/24
+allow from 119.107.7.0/24
+allow from 119.107.8.0/24
+allow from 119.107.9.0/24
+allow from 125.28.48.0/20
+allow from 210.234.208.0/20
+allow from 211.134.36.0/22
+allow from 211.134.37.0/24
+allow from 211.134.38.0/24
+allow from 211.134.39.0/24
+allow from 218.222.176.0/21
+allow from 219.108.136.0/21
+allow from 219.125.128.0/21
+allow from 219.125.162.0/24
+allow from 219.125.163.0/24
+allow from 219.125.164.0/24
+allow from 219.125.165.0/24
+allow from 219.125.166.0/24
+allow from 219.125.167.0/24
+allow from 222.15.70.0/24
+allow from 222.15.71.0/24
+allow from 222.15.72.0/24
+allow from 222.15.73.0/24
+allow from 222.15.74.0/24
+allow from 222.15.75.0/24
+allow from 222.15.76.0/24
+allow from 222.15.77.0/24
+allow from 222.15.78.0/24
+allow from 222.15.79.0/24
+allow from 222.3.144.0/24
+allow from 222.3.145.0/24
+allow from 222.3.146.0/24
+allow from 222.3.147.0/24
+allow from 222.3.148.0/24
+allow from 222.3.149.0/24
+allow from 222.3.150.0/24
+allow from 222.3.151.0/24
+allow from 59.135.48.0/24
+allow from 59.135.49.0/24
+allow from 59.135.50.0/24
+allow from 59.135.51.0/24
+allow from 59.135.52.0/24
+allow from 59.135.53.0/24
+allow from 59.135.54.0/24
+allow from 59.135.55.0/24
+allow from 59.135.56.0/24
+allow from 59.135.57.0/24
+allow from 59.135.58.0/24
+allow from 59.135.59.0/24
+allow from 59.135.60.0/24
+allow from 59.135.61.0/24
+allow from 59.135.62.0/24
+allow from 59.135.63.0/24
+allow from 59.137.0.0/20
+allow from 59.137.16.0/20
+#/SetEnvIf
+
+#softbank
+#SetEnvIf:SOFTBANK
+allow from 123.108.236.0/24
+allow from 123.108.237.0/24
+allow from 202.179.204.0/24
+allow from 202.253.96.224/27
+allow from 210.146.60.192/26
+allow from 210.146.7.192/26
+allow from 210.151.9.128/26
+allow from 210.169.130.112/28
+allow from 210.175.1.128/25
+allow from 210.228.189.0/24
+allow from 211.8.159.128/25
+allow from 61.197.253.56/29
+#Pull-GW 20120308
+allow from 123.108.237.112/28
+allow from 123.108.239.224/28
+allow from 202.253.96.144/28
+allow from 202.253.99.144/28
+allow from 210.228.189.188/30
+#GW-SSL 20120308
+allow from 123.108.237.104/29
+allow from 123.108.239.216/29
+allow from 202.253.96.136/29
+allow from 202.253.99.136/29
+allow from 210.228.189.192/30
+#/SetEnvIf
+
+#SetEnvIf:BOT
+#google crawler
+Allow from 209.85.238.0/24
+Allow from 66.249.64.0/20
+Allow from 72.14.199.0/24
+
+#yahoo mobile crawler
+Allow from 124.83.159.146/31
+Allow from 124.83.159.148/30
+Allow from 124.83.159.152/29
+Allow from 124.83.159.160/28
+Allow from 124.83.159.176/29
+Allow from 124.83.159.184/31
+Allow from 124.83.159.224/28
+Allow from 124.83.159.240/29
+Allow from 124.83.191.0/24
+Allow from 203.216.255.0/24
+#/SetEnvIf

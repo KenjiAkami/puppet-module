@@ -1,3 +1,3 @@
 class mcollective {
-	include  mcollective::install
+	include  mcollective::install, mcollective::config, mcollective::service
 }

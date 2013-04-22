@@ -1,0 +1,5 @@
+nameserver 127.0.0.1
+<% dnsserverlist.each do |ip| -%>
+nameserver <%= ip %>
+<% end -%>
+domain crooz.local

@@ -1,0 +1,6 @@
+[puppetlabs-products]
+name=Puppet Labs Products El 5 - $basearch
+baseurl=http://puppet.crooz.local/cblr/repo_mirror/Centos5.x-x86_64-puppet/
+enabled=1
+gpgcheck=0
+priority=80

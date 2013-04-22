@@ -9,11 +9,11 @@ class profile::config {
 	file {  
 		"/etc/profile":
 		ensure	=> present,
-		source	=> "puppet:///profile/profile";
+		source	=> "puppet:///modules/profile/profile";
 
 		"/etc/security/limits.d/openfile.conf":
 		ensure	=> present,
-		source	=> "puppet:///profile/openfile.conf";
+		source	=> "puppet:///modules/profile/openfile.conf";
 	}
 
 	augeas { "sysctl":

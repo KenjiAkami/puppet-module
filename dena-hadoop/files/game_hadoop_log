@@ -1,0 +1,73 @@
+#!/bin/bash
+#
+# game_hadoop_log        DeNA game_hadoop_log
+#
+# chkconfig: - 85 15
+# description: DeNA game_hadoop_log
+# processname: hDeNA game_hadoop_logttpd
+# pidfile: /var/run/game_hadoop_log.pid
+
+prog=/usr/dena/mbga_send_log/libexec/game_hadoop_log
+prog_base=`basename $prog`
+pidfile=/var/run/game_hadoop_log.pid
+lockfile=/var/lock/subsys/game_hadoop_log
+RETVAL=0
+
+# Source function library.
+. /etc/rc.d/init.d/functions
+
+start() {
+        echo -n $"Starting game_hadoop_log: "
+        daemon /etc/init.d/game_hadoop_log d_start
+        RETVAL=$?
+        echo
+        [ $RETVAL = 0 ] && touch ${lockfile}
+        return $RETVAL
+}
+
+d_start() {
+          echo -n $"Starting game_hadoop_log: "
+          $prog start
+          CNT=`$prog status|wc -l`
+          if [ $CNT > 1 ]; then
+               return 0
+          else
+               return 1
+          fi
+}
+
+stop() {
+	echo -n $"Stopping game_hadoop_log: "
+    killproc $prog_base
+	RETVAL=$?
+	echo
+	[ $RETVAL = 0 ] && rm -f ${pidfile}
+    return $RETVAL
+}
+
+# See how we were called.
+case "$1" in
+  start)
+	start
+	;;
+  d_start)
+	d_start
+	;;
+  stop)
+	stop
+	;;
+  status)
+    $prog status
+	RETVAL=$?
+	;;
+  restart)
+	stop
+	start
+	;;
+  *)
+	echo $"Usage: $prog {start|stop|restart|status}"
+	exit 1
+    ;;
+esac
+
+exit $RETVAL

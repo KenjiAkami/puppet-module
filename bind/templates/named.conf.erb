@@ -1,0 +1,109 @@
+options {
+        directory       "/var/named";
+
+        allow-query     { 172.16.0.0/12; localhost; };
+        allow-transfer  { 172.16.0.0/12; localhost; };
+
+        forwarders      { 158.205.229.244; 158.205.237.131; };
+};
+
+logging {
+        channel lame-servers { null; };
+};
+
+zone "crooz.local" IN {<% if masterip.any? -%>
+        type <%= name %>;
+        file "crooz.local.rev";
+        masters { <%= masterip %>; };
+        <% else %>
+        type <%= name %>;
+        file "crooz.local.zone";
+        allow-update { none;
+ };
+        notify yes; <%if slaveip.is_a? Array %>
+        also-notify { <% slaveip.each do |srv| -%><%="#{srv};"%><%end%>}; <% end -%>
+        <% end %>
+};
+
+// for AD
+zone "ad._msdcs.crooz.local" IN {<% if masterip.any? -%>
+        type <%= name %>;
+        file "ad._msdcs.crooz.local.zone.rev";
+        masters { <%= masterip %>; };
+        <% else %>
+        type <%= name %>;
+        file "ad._msdcs.crooz.local.zone";
+        allow-update { 172.18.1.138;
+                       172.18.1.139;
+                       172.24.5.81;
+                       172.25.5.84;
+ };
+        notify yes; <%if slaveip.is_a? Array %>
+        also-notify { <% slaveip.each do |srv| -%><%="#{srv};"%><%end%>}        ; <% end -%>
+        <% end %>
+};
+zone "ad._sites.crooz.local" IN {<% if masterip.any? -%>
+        type <%= name %>;
+        file "ad._sites.crooz.local.zone.rev";
+        masters { <%= masterip %>; };
+        <% else %>
+        type <%= name %>;
+        file "ad._sites.crooz.local.zone";
+        allow-update { 172.18.1.138;
+                       172.18.1.139;
+                       172.24.5.81;
+                       172.25.5.84;
+ };
+        notify yes; <%if slaveip.is_a? Array %>
+        also-notify { <% slaveip.each do |srv| -%><%="#{srv};"%><%end%>}        ; <% end -%>
+        <% end %>
+};
+zone "ad._tcp.crooz.local" IN {<% if masterip.any? -%>
+        type <%= name %>;
+        file "ad._tcp.crooz.local.zone.rev";
+        masters { <%= masterip %>; };
+        <% else %>
+        type <%= name %>;
+        file "ad._tcp.crooz.local.zone";
+        allow-update { 172.18.1.138;
+                       172.18.1.139;
+                       172.24.5.81;
+                       172.25.5.84;
+ };
+        notify yes; <%if slaveip.is_a? Array %>
+        also-notify { <% slaveip.each do |srv| -%><%="#{srv};"%><%end%>}        ; <% end -%>
+        <% end %>
+};
+zone "ad._udp.crooz.local" IN {<% if masterip.any? -%>
+        type <%= name %>;
+        file "ad._udp.crooz.local.zone.rev";
+        masters { <%= masterip %>; };
+        <% else %>
+        type <%= name %>;
+        file "ad._udp.crooz.local.zone";
+        allow-update { 172.18.1.138;
+                       172.18.1.139;
+                       172.24.5.81;
+                       172.25.5.84;
+ };
+        notify yes; <%if slaveip.is_a? Array %>
+        also-notify { <% slaveip.each do |srv| -%><%="#{srv};"%><%end%>}        ; <% end -%>
+        <% end %>
+};
+zone "ad._ldap._tcp.dc._msdcs.crooz.local" IN {<% if masterip.any? -%>
+        type <%= name %>;
+        file "ad._ldap._tcp.dc._msdcs.crooz.local.zone.rev";
+        masters { <%= masterip %>; };
+        <% else %>
+        type <%= name %>;
+        file "ad._ldap._tcp.dc._msdcs.crooz.local.zone";
+        allow-update { 172.18.1.138;
+                       172.18.1.139;
+                       172.24.5.81;
+                       172.25.5.84;
+ };
+        notify yes; <%if slaveip.is_a? Array %>
+        also-notify { <% slaveip.each do |srv| -%><%="#{srv};"%><%end%>}        ; <% end -%>
+        <% end %>
+};
+

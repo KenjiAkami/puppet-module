@@ -8,25 +8,25 @@ class haproxy::config {
 		"/usr/sbin/haproxy":
 		ensure => present,
 		mode   => "0755",
-		source => "puppet:///haproxy/haproxy";
+		source => "puppet:///modules/haproxy/haproxy";
 
 		"/etc/rsyslog.conf":
 		ensure => present,
-		source => "puppet:///haproxy/rsyslog.conf",
+		source => "puppet:///modules/haproxy/rsyslog.conf",
 		require => Class["haproxy::install"],
 		notify => Service["rsyslog"];
 
 		"/etc/logrotate.d/haproxy":
 		ensure => present,
-		source => "puppet:///haproxy/haproxy_rotate";
+		source => "puppet:///modules/haproxy/haproxy_rotate";
 	
 		"/etc/haproxy/errfile":
-		source => "puppet:///haproxy/errfile",
+		source => "puppet:///modules/haproxy/errfile",
 		recurse	=> true,
 		ensure	=> "directory";
 
 #		"/etc/monit.d/haproxy":
-#		source => "puppet:///haproxy/haproxy.monit";
+#		source => "puppet:///modules/haproxy/haproxy.monit";
 	}
 
 	service { "rsyslog":

@@ -1,83 +1,81 @@
 class apache::config {
-	file { "/opt/httpd":
-		ensure => link,
-		target => "/opt/httpd-${apacheversion}",
-		require => Class["apache::install"],
-	}
+    $require = Class["apache::install"]
 
-	file { "httpd.init":
-		path   => "/etc/init.d/httpd",
-		source => "puppet:///apache/httpd.init",
-		owner => "root",
-		group => "root",
-		mode   => 755,
-		require => Class["apache::install"],
-	}
+    File {
+        ensure  => "present",
+        owner   => "root",
+        group   => "root",
+        mode    => "0644",
+    }
 
-	file { "/var/log/www":
-		ensure => "directory",
-		mode   => 755,
-		require => Class["apache::install"],
-	}
+    file { 
+        "/crooz":
+        ensure => directory;
 
-	file { "/var/log/cronlog":
-		ensure => "directory",
-		mode   => 755,
-		require => Class["apache::install"],
-	}
+		"/etc/httpd/conf/httpd.conf":
+        require => File["/crooz"],
+		source  => "puppet:///modules/apache/conf/httpd.conf";
 
-	file { "/opt/httpd-${apacheversion}/logs":
-		ensure  => "directory",
-		mode    => 755,
-		require => [Class["apache::install"], File["/opt/httpd"]],
-	}
+        "/crooz/application-level.inc":
+        source  => "puppet:///modules/apache/crooz/application-level.inc";
+		
+		"/etc/httpd/conf/magic":
+		source  => "puppet:///modules/apache/conf/magic";
+		
+		"/etc/httpd/conf.d":
+		recurse => "true",
+		source  => "puppet:///modules/apache/conf.d";
 
-	file { "conf":
-		ensure => directory,
-		recurse => true,
-		path => "/opt/httpd-${apacheversion}/conf",
-		source => "puppet:///apache/${confversion}",
-		owner => "root",
-		group => "root",
-		notify => [Class["apache::service"], File["/opt/httpd"]],
-		require => Class["apache::install"],
-	}
+		"/etc/httpd/conf.d/proxy_ajp.conf":
+		ensure  => absent;
 
-	file { "htdocs":
-		ensure => directory,
-		recurse => true,
-		path => "/opt/httpd-${apacheversion}/htdocs",
-		source => "puppet:///apache/htdocs",
-		owner => "root",
-		group => "root",
-		require => [Class["apache::install"], File["/opt/httpd"]],
-	}
+		"/etc/httpd/conf.d/ssl.conf":
+		ensure  => absent;
 
-	file { "httpdcron":
-		path   => "/etc/cron.daily/httpdcron",
-		source => "puppet:///apache/httpdcron",
-		ensure => present,
-		owner => "root",
-		group => "root",
-		mode   => 755,
-	}
+		"/etc/httpd/conf.d/welcome.conf":
+		ensure  => absent;
 
-	file { "httpdlogdel":
-		path   => "/etc/cron.monthly/httpdlogdel",
-		source => "puppet:///apache/httpdlogdel",
-		ensure => present,
-		owner => "root",
-		group => "root",
-		mode   => 755,
-	}
+		"/var/www/seo":
+		recurse => "true",
+		source  => "puppet:///modules/apache/www/seo";
 
-	file { "apache_status.sh":
-		path   => "/opt/httpd-${apacheversion}/bin/apache_status.sh",
-		source => "puppet:///apache/apache_status.sh",
-		ensure => present,
-		owner => "root",
-		group => "root",
-		mode   => 755,
-		require => Class["apache::install"],
-	}
+		"/var/www/healthcheck":
+		recurse => "true",
+		source  => "puppet:///modules/apache/www/healthcheck";
+
+		"/var/www/local":
+		recurse => "true",
+		source  => "puppet:///modules/apache/www/local";
+
+        "/var/www/local/flashpolicy":
+        owner   => "apache",
+        group   => "apache",
+        mode    => "0700";
+
+		"/var/log/httpd":
+        owner   => "apache",
+        group   => "apache",
+        mode    => "0755";
+    }
+    
+    cron { 
+        "apache-log-arh":
+        command => "gzip /var/log/httpd/*log.$(date +\%Y\%m\%d -d '3 days ago')",
+        user    => "root",
+        hour    => "4",
+        minute  => "0";
+
+        "apache-log-del": 
+        command => "/bin/rm /var/log/httpd/*log.$(date +\%Y\%m\%d -d '30 days ago').gz",
+        user    => "root",
+        hour    => "4",
+        minute  => "20";
+    }
+
+    augeas { "tcp_max_tw":
+        context => "/files/etc/sysctl.conf",
+        changes => [
+            "set net.ipv4.tcp_max_tw_buckets 20000",
+        ];
+    }
 }

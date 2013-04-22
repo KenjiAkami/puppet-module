@@ -1,8 +1,7 @@
 class apache::install {
-	package { "httpd":
-                name   => "httpd",
-                ensure => installed,
-                source => "http://${puppetserver}/httpd-${apacheversion}-1.i386.rpm",
-                provider => "rpm",
-        }
+    package { "apache":
+        name    => [ "httpd", "httpd-devel.x86_64", "mod_ssl", "distcache", "mod_extract_forwarded",],
+        ensure  => "installed",
+        require => [Class["yumrepo"], Class["php"],],
+    }
 }

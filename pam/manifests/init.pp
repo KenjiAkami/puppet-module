@@ -1,3 +1,3 @@
 class pam {
-	include pam::install, pam::config, pam::service
+	include pam::config
 }

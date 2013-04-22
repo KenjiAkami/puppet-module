@@ -1,9 +1,11 @@
 class crontab::install {
-	package { "cronie-noanacron":
-		ensure => present,
-	}
+    if $lsbmajdistrelease == 6 {
+        package { "cronie-noanacron":
+            ensure => present,
+        }
 
-	package { "cronie-anacron":
-		ensure => absent,
-	}
+        package { "cronie-anacron":
+            ensure => absent,
+        }
+    }
 }

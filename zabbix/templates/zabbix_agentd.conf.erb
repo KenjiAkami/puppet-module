@@ -1,0 +1,12 @@
+PidFile=/var/run/zabbix/zabbix_agentd.pid
+LogFile=/var/log/zabbix/zabbix_agentd.log
+Include=/etc/zabbix/zabbix_agentd.d/
+Timeout=10
+
+Server=172.25.5.99
+Hostname=<%= hostname %>
+ListenIP=<%= ipaddress_bond1 %>
+
+UserParameter=server.current1,/etc/zabbix/bmc/server_current.sh 'Current 1'
+UserParameter=server.current2,/etc/zabbix/bmc/server_current.sh 'Current 2'
+UserParameter=server.watt,/etc/zabbix/bmc/server_current.sh 'Pwr Consumption'

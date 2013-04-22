@@ -1,0 +1,52 @@
+#distribution date : 2012/02/28
+#distributor : ito
+#distribution range : all
+
+#SetEnvIf:SERVER
+#SHIBAURA 100M (yobi)
+Allow from 113.35.90.160/29
+
+#SHIBAURA 1G (blog)
+Allow from 122.216.15.0/24
+
+#SHIBAURA 1G (image)
+Allow from 113.36.122.0/24
+
+#SHINJYUKU 1G (labs)
+Allow from 210.129.83.128/25
+
+#SHINJYUKU 1G (social1)
+Allow from 210.168.33.0/24
+
+#SHINJYUKU 1G (social2)
+Allow from 203.183.97.0/25
+
+#SHINJYUKU 1G (common)
+Allow from 210.168.46.0/25
+
+#SHINJYUKU 1G (blog)
+Allow from 210.129.74.128/25
+
+#SHINJYUKU 1G (image)
+Allow from 210.129.74.0/25
+#/SetEnvIf
+
+
+#SetEnvIf:OFFICE
+#ROPPONGI 100M (main)
+Allow from 122.216.120.240/28
+
+#ROPPONGI 100M (sub)
+Allow from 60.39.236.162
+
+#SHIBAURA 100M (VPN)
+Allow from 58.157.16.112/29
+
+#SHINJYUKU 100M (VPN)
+Allow from 122.208.155.232/29
+
+#local
+Allow from 127.0.0.1
+Allow from 172.16.0.0/12
+Allow from 192.168.0.0/16
+#/SetEnvIf

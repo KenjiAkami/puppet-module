@@ -1,0 +1,9 @@
+PORT="11211"
+USER="nobody"
+MAXCONN="10240"
+CACHESIZE="12288"<%
+if ipaddress_bond1 == ip_a %>
+OPTIONS="-x <%= ip_b %>"
+<% else %>
+OPTIONS="-x <%= ip_a %>"
+<% end %>

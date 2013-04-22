@@ -1,0 +1,34 @@
+<VirtualHost *:<%= port %>>
+    ServerName  <%= name %>
+
+    DocumentRoot <%= docroot %>
+    SetEnvIf Host . BRANCH=master
+
+    AliasMatch ^/(img|swf)/(.*)      /var/data/resource/monimusha/mobile/$1/$2
+    AliasMatch ^/(js|css)/(.*)       /var/www/venus_3.0/project/monimusha/master/webapps/mobile/htdocs/$1/$2
+    Alias /gadget.xml                /var/www/venus_3.0/project/monimusha/master/webapps/mobile/htdocs/gadget.xml
+
+    CustomLog "|/usr/sbin/rotatelogs /var/log/httpd/<%= name %>-access_log.%Y%m%d 86400 540" combined_venus3 env=!no_log
+    ErrorLog "|/usr/sbin/rotatelogs /var/log/httpd/<%= name %>-error_log.%Y%m%d 86400 540"
+
+    AddType text/cache-manifest .manifest
+
+    <Directory <%= docroot %>>
+        Order deny,allow
+        Allow From all
+
+        SetEnv HTTP_CRZ_CARRIER 256
+
+        RewriteEngine On
+        RewriteRule !^(server-status|server-info)/ index.php [L]
+    </Directory>
+
+    <Directory /var/data/resource/monimusha/mobile/>
+        Order deny,allow
+        Allow From all
+
+        RewriteEngine On
+        RewriteRule ^img/enc/ local/dec_obf.php?mode=storage&docpath=/var/data/resource/monimusha/mobile/ [L]
+    </Directory>
+
+</VirtualHost>

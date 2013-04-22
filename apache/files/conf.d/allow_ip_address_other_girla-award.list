@@ -1,0 +1,12 @@
+#distribution date : 2011/07/14
+#distributor : tazawa
+#distribution range : girls-award
+
+#outsourcing by girls-award
+Allow from 121.101.94.168
+Allow from 122.216.210.218
+Allow from 122.218.111.138
+Allow from 110.66.96.0/19
+Allow from 110.66.118.141
+Allow from 121.101.94.168
+

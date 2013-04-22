@@ -6,12 +6,22 @@ class yumrepo {
 	}
 
 	file {
-		"/etc/yum.repos.d/mobcon.repo":
-		source  => "puppet:///yumrepo/mobcon.repo",
-	}
+		"/etc/yum.repos.d/centos5.x-local.repo":
+		source  => "puppet:///modules/yumrepo/centos5.x-local.repo";
 
-#	package { "cdh3-repository":
-#		ensure	=> present,
-#		require => File["/etc/yum.repos.d/mobcon.repo"],
-#	}
+		"/etc/yum.repos.d/crooz.repo":
+		source  => "puppet:///modules/yumrepo/crooz.repo";
+
+		"/etc/yum.repos.d/puppetlabs.repo":
+		source  => "puppet:///modules/yumrepo/puppetlabs.repo";
+
+		"/etc/yum.repos.d/epel.repo":
+		source  => "puppet:///modules/yumrepo/epel.repo";
+
+        "/etc/yum.repos.d/CentOS-Base.repo":
+        ensure  => absent;
+
+        "/etc/yum.repos.d/CentOS-Media.repo":
+        ensure  => absent;
+	}
 }

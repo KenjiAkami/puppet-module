@@ -1,0 +1,42 @@
+[base-local]
+name=CentOS-$releasever - Base
+baseurl=http://172.16.5.252/mrepo/centos$releasever-$basearch/RPMS.os/
+gpgcheck=0
+enabled=1
+priority=1
+
+[updates-local]
+name=CentOS-$releasever - Updates
+baseurl=http://172.16.5.252/mrepo/centos$releasever-$basearch/RPMS.updates/
+gpgcheck=0
+enabled=0
+
+[addons-local]
+name=CentOS-$releasever - Addons
+baseurl=http://172.16.5.252/mrepo/centos$releasever-$basearch/RPMS.addons/
+gpgcheck=0
+enabled=0
+
+[extras-local]
+name=CentOS-$releasever - Extras
+baseurl=http://172.16.5.252/mrepo/centos$releasever-$basearch/RPMS.extras/
+gpgcheck=0
+enabled=0
+
+[centosplus-local]
+name=CentOS-$releasever - Plus
+baseurl=http://172.16.5.252/mrepo/centos$releasever-$basearch/RPMS.centosplus/
+gpgcheck=0
+enabled=0
+
+[contrib-local]
+name=CentOS-$releasever - Contrib
+baseurl=http://172.16.5.252/mrepo/centos$releasever-$basearch/RPMS.contrib/
+gpgcheck=0
+enabled=0
+
+[fasttrack-local]
+name=CentOS-$releasever - Fasttrack
+baseurl=http://172.16.5.252/mrepo/centos$releasever-$basearch/RPMS.fasttrack/
+gpgcheck=0
+enabled=0

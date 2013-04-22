@@ -1,5 +1,11 @@
 class ssh {
-#	@@sshkey { "${fqdn}_dsa": type => dsa, key => $sshdsakey }
-	@@sshkey { "${fqdn}": type => rsa, key => $sshrsakey }
-	Sshkey <<| |>>
+	include  ssh::config, ssh::service
 }
+
+###
+###exp)
+### include ssh
+###
+### web&batch server
+### $presrv=pre07
+### include ssh

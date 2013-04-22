@@ -9,9 +9,7 @@ class func::config {
 	file { 
 		"/etc/certmaster/minion.conf":
 		ensure => present,
-		source => "puppet:///func/minion.conf",
-		notify => Class["func::service"];
-
+		source => "puppet:///modules/func/minion.conf";
 
 		"/etc/func/minion.conf":
 		ensure => present,

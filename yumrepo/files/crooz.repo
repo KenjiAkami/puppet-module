@@ -1,0 +1,12 @@
+[freeze]
+name=CentOS-$releasever - Freeze
+baseurl=http://172.16.5.252/mrepo/centos5-$basearch/RPMS.freeze/
+gpgcheck=0
+enabled=1
+priority=2
+
+[test]
+name=CentOS-$releasever - Test
+baseurl=http://172.16.6.252/mrepo/centos5-$basearch/RPMS.test/
+gpgcheck=0
+enabled=0

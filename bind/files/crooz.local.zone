@@ -1,0 +1,11 @@
+$TTL    86400
+@       IN      SOA     crooz.local.  root.crooz.local.(
+                                      2012121901 ; Serial
+                                      28800      ; Refresh
+                                      14400      ; Retry
+                                      3600000    ; Expire
+                                      86400 )    ; Minimum
+		IN NS    crooz.local.
+test		IN A     192.168.1.2
+test2           IN A     192.168.1.3
+infra-dev02             IN A     172.18.1.153

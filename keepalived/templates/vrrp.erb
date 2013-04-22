@@ -1,0 +1,28 @@
+<%if ! virtual_ipaddress.empty? -%>
+<% virtual_ipaddress.keys.each do |vir_ip| -%>
+<% virtual_router_id = virtual_ipaddress[vir_ip].split(".")[3] -%>
+<% state = vir_ip -%>
+vrrp_instance <%= name %>-vrrp<%= virtual_router_id %> {
+        state <%= state %>
+        interface <%= interface %>
+        virtual_router_id <%= virtual_router_id %>
+        garp_master_delay 5 <% 
+        if state == "MASTER" %>
+        priority 110 <% 
+        elsif state == "BACKUP" %>
+        priority 100 <% 
+        end %>
+        nopreempt
+        advert_int 1
+        authentication {
+                auth_type PASS
+                auth_pass himitsu
+        }
+
+        virtual_ipaddress {
+               <%= virtual_ipaddress[vir_ip] %> label <%= interface %>:<%= virtual_router_id %>
+        }
+} # END vrrp_instance <%= state%> <%= name %>
+
+<% end %>
+<% end %>

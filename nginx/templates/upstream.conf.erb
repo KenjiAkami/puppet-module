@@ -1,0 +1,10 @@
+<%if srvinfo.is_a? Hash -%>
+<% srvinfo.each do |srvname,srvlist| -%>
+upstream <%= srvname %>{
+<%if srvlist.is_a? Array -%>
+<% srvlist.each do |srv| -%><%= "    server #{srv};\n" %><% end -%>
+<% end -%>
+}
+
+<% end -%>
+<% end -%>

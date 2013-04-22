@@ -1,0 +1,11 @@
+#distribution date : 2011/07/01
+#distributor : ito
+#distribution range : support_report
+
+#WINGLE
+Allow from 203.183.25.47
+Allow from 203.183.25.48
+Allow from 113.32.104.58
+Allow from 118.243.209.49
+Allow from 122.219.134.50
+Allow from 122.219.75.11

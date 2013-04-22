@@ -8,6 +8,6 @@ listen_addr =
 listen_port = 51234
 use_certmaster = 0
 
-cert_file = /etc/puppet/ssl/certs/<%= fqdn %>.pem
-key_file = /etc/puppet/ssl/private_keys/<%= fqdn %>.pem
-ca_file = /etc/puppet/ssl/certs/ca.pem
+cert_file = /var/lib/puppet/ssl/certs/<%= hostname.downcase -%>.crooz.local.pem
+key_file = /var/lib/puppet/ssl/private_keys/<%= hostname.downcase -%>.crooz.local.pem
+ca_file = /var/lib/puppet/ssl/certs/ca.pem

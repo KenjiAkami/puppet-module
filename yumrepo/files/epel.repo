@@ -1,0 +1,6 @@
+[epel]
+name=Extra Packages for Enterprise Linux 5 - $basearch
+baseurl=http://puppet.crooz.local/cblr/repo_mirror/Centos5.x-x86_64-epel/
+enabled=0
+gpgcheck=0
+priority=90

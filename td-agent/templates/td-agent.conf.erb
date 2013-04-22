@@ -1,0 +1,27 @@
+include conf.d/*.conf
+
+<match forward.**>
+  type forward 
+<% if srvlist.is_a? Array -%>
+<% srvlist.each do |srv| -%>
+  <server>
+    host <%= srv %>
+    port 24224
+  </server>
+<% end -%><% end -%>
+
+  buffer_type file
+  buffer_path /var/log/td-agent/buffer/forward
+
+  flush_interval 60s
+</match>
+
+<match fluent.**>
+  type file
+  path /var/log/td-agent/fluent.log
+</match>
+
+<match **>
+  type file
+  path /var/log/td-agent/no_match.log
+</match>
